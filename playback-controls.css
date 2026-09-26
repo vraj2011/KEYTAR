@@ -1,0 +1,252 @@
+.playback-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 28px auto 0;
+    padding: 16px 22px;
+    max-width: 560px;
+    border-radius: 16px;
+    background: rgba(58, 50, 43, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-control label {
+    font-family: "Oswald", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(245, 231, 208, 0.6);
+}
+
+#volume-slider {
+    width: 120px;
+    accent-color: #c47d3c;
+    cursor: pointer;
+}
+
+#volume-value {
+    min-width: 38px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #f6d7a7;
+}
+
+.recorder-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid #e0a064;
+    background: #c47d3c;
+    color: #1c120b;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 3px 0 #71451f;
+    transition: transform 0.12s ease;
+}
+
+.control-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.control-btn:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #71451f;
+}
+
+.control-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+    box-shadow: none;
+}
+
+#record-btn.is-recording {
+    background: #b23b3b;
+    border-color: #e06464;
+    box-shadow: 0 3px 0 #6e1f1f;
+    animation: record-pulse 1s ease-in-out infinite;
+}
+
+@keyframes record-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+#recorder-status {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(245, 231, 208, 0.55);
+    min-width: 130px;
+}
+
+.control-btn-ghost {
+    background: transparent;
+    color: rgba(245, 231, 208, 0.7);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: none;
+}
+
+.control-btn-ghost:hover:not(:disabled) {
+    color: #f5e7d0;
+    border-color: rgba(246, 215, 167, 0.4);
+    background: rgba(246, 215, 167, 0.08);
+}
+
+.save-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.recording-name-input {
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(0, 0, 0, 0.25);
+    color: #f4eadc;
+    font-family: "Oswald", sans-serif;
+    font-size: 13px;
+    width: 160px;
+}
+
+.recording-name-input:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.recording-name-input::placeholder {
+    color: rgba(244, 234, 220, 0.4);
+}
+
+.saved-recordings-panel {
+    width: min(560px, 100%);
+    margin: 16px auto 0;
+    padding: 16px 22px;
+    border-radius: 16px;
+    background: rgba(58, 50, 43, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.saved-recordings-title {
+    margin-bottom: 12px;
+    font-family: "Oswald", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(245, 231, 208, 0.5);
+    text-align: center;
+}
+
+.saved-recordings-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.saved-recordings-empty {
+    font-size: 13px;
+    color: rgba(244, 234, 220, 0.5);
+    text-align: center;
+    font-style: italic;
+}
+
+.saved-recording-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/*yeah it's me, you can't see me!! do u actually read this.. , code= BMW */
+
+.saved-recording-name {
+    flex: 1;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #f4eadc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.saved-recording-meta {
+    font-size: 11px;
+    color: rgba(244, 234, 220, 0.5);
+    white-space: nowrap;
+}
+
+.mini-btn {
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(224, 160, 100, 0.4);
+    background: transparent;
+    color: #f6d7a7;
+    font-family: "Oswald", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.mini-btn:hover {
+    background: rgba(246, 215, 167, 0.14);
+    transform: translateY(-1px);
+}
+
+.mini-btn-danger {
+    border-color: rgba(224, 100, 100, 0.4);
+    color: #e0a0a0;
+}
+
+.mini-btn-danger:hover {
+    background: rgba(224, 100, 100, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #record-btn.is-recording {
+        animation: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .playback-controls {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .saved-recording-item {
+        flex-wrap: wrap;
+    }
+
+    .saved-recording-name {
+        width: 100%;
+        white-space: normal;
+    }
+}

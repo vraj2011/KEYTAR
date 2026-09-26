@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+
+
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KEYTAR</title>
+
+
+    
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="LoadingScreen.css">
+<link rel="stylesheet" href="tutorial-slides.css">
+<link rel="stylesheet" href="playback-controls.css">
+
+
+
+<script src="script.js" defer></script>
+<script src="playback-controls.js" defer></script>
+<script src="LoadingScreen.js" defer></script>
+<script src="tutorial-slides.js" defer></script>
+
+</head>
+
+
+<body>
+
+<div id="loading-screen">
+    <div class="loading-inner">
+        <h1 class="loading-logo">KEYTAR</h1>
+
+        <svg class="string-progress" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true">
+            <path id="loading-string-track" d="M10,35 Q200,35 390,35"></path>
+            <path id="loading-string" d="M10,35 Q200,35 390,35"></path>
+            <g id="loading-pick" transform="translate(10,35)">
+                <path d="M-8,0 L8,-6 L5,10 L-5,10 Z"></path>
+            </g>
+        </svg>
+
+        <p id="loading-status" aria-live="polite">Tuning strings&hellip; 0%</p>
+    </div>
+</div>
+
+
+
+<div id="tutorial-overlay" class="hidden" role="dialog" aria-modal="true" aria-labelledby="tutorial-heading-0">
+ 
+    <div class="tutorial-card">
+
+        <p class="tutorial-count" id="tutorial-count">1 / 4</p>
+
+        <div class="tutorial-slides" id="tutorial-slides">
+
+
+            <section class="tutorial-slide" data-slide="0">
+
+                <h2 id="tutorial-heading-0">Meet KEYTAR</h2>
+
+                <p>A guitar you play with nothing but your keyboard. No strings, no tuning — just keys.</p>
+
+            </section>
+
+
+            <section class="tutorial-slide" data-slide="1">
+
+                <h2 id="tutorial-heading-1">Pick a string</h2>
+
+                <p>Press <span class="key-hint">1</span>
+                     through <span class="key-hint">6</span>
+                      to choose which string you're playing.</p>
+
+            </section>
+
+
+            <section class="tutorial-slide" data-slide="2">
+
+                <h2 id="tutorial-heading-2">Play a note</h2>
+
+                <p>Every letter key plays a different note on the string you picked. Try a few and listen the beats!</p>
+
+            </section>
+
+
+            <section class="tutorial-slide" data-slide="3">
+            
+                <h2 id="tutorial-heading-3">Follow the display</h2>
+            
+                <p>The screen always shows your string, your key, and the note it played — so you always know what you just heard. 
+                    WITH "KEYTAR" YOU CAN BE A GREAT TYPER AND A MUSICIAN,TOO. 
+                </p>
+            
+            </section>
+
+        </div>
+
+        <div class="tutorial-dots" id="tutorial-dots"></div>
+
+        
+        <div class="tutorial-controls">
+        
+            <button type="button" id="tutorial-prev" class="tutorial-btn tutorial-btn-ghost">Back</button>
+        
+            <button type="button" id="tutorial-next" class="tutorial-btn">Next</button>
+        
+        </div>   
+    </div>
+</div>
+
+<button type="button" id="tutorial-help-btn" aria-label="How to play KEYTAR">?</button>
+
+
+
+    <header>
+
+        <h1>KEYTAR</h1>
+
+        <p>keyboard supported guitar</p>
+
+    </header>
+
+    <main>
+
+        <p id="string-status" aria-live="polite">Selected string: 6</p>
+
+        <p id="key-status" aria-live="polite">Press a letter key</p>
+
+        <p id="note-status" aria-live="polite">Note: --</p>
+
+
+
+
+
+//yeah still trying so someone could notice me..
+<div class="playback-controls">
+
+    <div class="volume-control">
+        <label for="volume-slider">Volume</label>
+        <input type="range" id="volume-slider" min="0" max="100" value="100">
+        <span id="volume-value">100%</span>
+    </div>
+
+    <div class="recorder-control">
+        <button type="button" id="record-btn" class="control-btn">&#9679; Record</button>
+        <button type="button" id="play-btn" class="control-btn" disabled>&#9654; Play</button>
+        <button type="button" id="clear-btn" class="control-btn" disabled>Clear</button>
+        <span id="recorder-status" aria-live="polite">Not recording</span>
+    </div>
+
+    <div class="save-row">
+        <input type="text" id="recording-name-input" class="recording-name-input" placeholder="Name this recording" maxlength="40" disabled>
+        <button type="button" id="save-recording-btn" class="control-btn control-btn-ghost" disabled>Save</button>
+    </div>
+
+</div>
+
+<div class="saved-recordings-panel">
+    <p class="saved-recordings-title">Saved recordings</p>
+    <ul class="saved-recordings-list" id="saved-recordings-list">
+        <li class="saved-recordings-empty" id="saved-recordings-empty">Nothing saved yet — record something and hit Save.</li>
+    </ul>
+</div>
+
+        <div class="instrument">
+
+
+            <p class="instrument-title">Strings</p>
+
+            <div class="string-selector">
+
+                <button class="string-key" data-string="1" type="button">1</button>
+
+                <button class="string-key" data-string="2" type="button">2</button>
+
+                <button class="string-key" data-string="3" type="button">3</button>
+
+                <button class="string-key" data-string="4" type="button">4</button>
+
+                <button class="string-key" data-string="5" type="button">5</button>
+
+                <button class="string-key active" data-string="6" type="button">6</button>
+
+            </div>
+
+
+            
+            <p class="instrument-title">Keys</p>
+            
+            <div class="keyboard">
+            
+                <div class="keyboard-row">
+            
+                    <button class="key" data-key="q" type="button">Q</button>
+            
+                    <button class="key" data-key="w" type="button">W</button>
+            
+                    <button class="key" data-key="e" type="button">E</button>
+            
+                    <button class="key" data-key="r" type="button">R</button>
+            
+                    <button class="key" data-key="t" type="button">T</button>
+            
+                    <button class="key" data-key="y" type="button">Y</button>
+            
+                    <button class="key" data-key="u" type="button">U</button>
+            
+                    <button class="key" data-key="i" type="button">I</button>
+            
+                    <button class="key" data-key="o" type="button">O</button>
+            
+                    <button class="key" data-key="p" type="button">P</button>
+            
+                </div>
+            
+                <div class="keyboard-row">
+            
+                    <button class="key" data-key="a" type="button">A</button>
+            
+                    <button class="key" data-key="s" type="button">S</button>
+            
+                    <button class="key" data-key="d" type="button">D</button>
+            
+                    <button class="key" data-key="f" type="button">F</button>
+            
+                    <button class="key" data-key="g" type="button">G</button>
+            
+                    <button class="key" data-key="h" type="button">H</button>
+            
+                    <button class="key" data-key="j" type="button">J</button>
+            
+                    <button class="key" data-key="k" type="button">K</button>
+            
+                    <button class="key" data-key="l" type="button">L</button>
+            
+                </div>
+            
+                <div class="keyboard-row">
+            
+                    <button class="key" data-key="z" type="button">Z</button>
+            
+                    <button class="key" data-key="x" type="button">X</button>
+            
+                    <button class="key" data-key="c" type="button">C</button>
+            
+                    <button class="key" data-key="v" type="button">V</button>
+            
+                    <button class="key" data-key="b" type="button">B</button>
+            
+                    <button class="key" data-key="n" type="button">N</button>
+            
+                    <button class="key" data-key="m" type="button">M</button>
+            
+                </div>
+            
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 KEYTAR. All rights reserved.</p>
+
+    </footer>
+
+</body>
+
+</html> 

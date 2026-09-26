@@ -1,0 +1,219 @@
+/*this includes all design i done for all 4 slides!*/
+/*NO, I DON'T OVERCODE BUT I LOVE THINGS WHICH ARE AWAY LOOKS CLEANER!
+THATS WHY I USE SPACING TOO MUCH!!!, all by my 2nd grade teacher who taught this to me but than was a notebook but now its code!!*/
+
+body.tutorial-open {
+overflow: hidden;
+}
+
+#tutorial-help-btn {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9997;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(58, 50, 43, 0.55);
+    backdrop-filter: blur(6px);
+    color: #f5e7d0;
+    font-family: "Oswald", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.28);
+    transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+#tutorial-help-btn:hover {
+    background: rgba(246, 215, 167, 0.14);
+    border-color: rgba(246, 215, 167, 0.4);
+    transform: translateY(-2px);
+}
+
+#tutorial-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(6, 4, 2, 0.72);
+    backdrop-filter: blur(4px);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+#tutorial-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.tutorial-card {
+    width: min(440px, 100%);
+    padding: 40px 32px 28px;
+    border-radius: 20px;
+    text-align: center;
+    background: rgba(58, 50, 43, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.tutorial-count {
+    margin-bottom: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(245, 231, 208, 0.5);
+    font-family: "Oswald", sans-serif;
+}
+
+.tutorial-slides {
+    position: relative;
+    min-height: 132px;
+}
+
+.tutorial-slide {
+    display: none;
+}
+
+.tutorial-slide.active {
+    display: block;
+    animation: tutorial-fade-in 0.3s ease;
+}
+
+@keyframes tutorial-fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tutorial-slide h2 {
+    margin-bottom: 14px;
+    font-family: "Oswald", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f6d7a7;
+}
+
+.tutorial-slide p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(244, 234, 220, 0.85);
+}
+
+
+/* DO YOU ACTUALLY SEE THIS? TELL ME IF YOU DO..*/
+
+
+.key-hint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 5px;
+    margin: 0 1px;
+    border-radius: 5px;
+    background: rgba(196, 125, 60, 0.25);
+    border: 1px solid rgba(224, 160, 100, 0.4);
+    font-weight: 700;
+    font-size: 13px;
+    color: #f6d7a7;
+}
+
+.tutorial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 22px 0 24px;
+}
+
+.tutorial-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.tutorial-dot.active {
+    background: #e0a064;
+    transform: scale(1.3);
+}
+
+.tutorial-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tutorial-btn {
+    padding: 11px 24px;
+    border-radius: 999px;
+    border: 1px solid #e0a064;
+    background: #c47d3c;
+    color: #1c120b;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #71451f;
+    transition: transform 0.12s ease;
+}
+
+.tutorial-btn:hover {
+    transform: translateY(-2px);
+}
+
+.tutorial-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #71451f;
+}
+
+.tutorial-btn-ghost {
+    background: transparent;
+    color: rgba(245, 231, 208, 0.7);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: none;
+}
+
+.tutorial-btn-ghost:hover {
+    color: #f5e7d0;
+    border-color: rgba(246, 215, 167, 0.4);
+}
+
+.tutorial-btn-ghost:disabled {
+    opacity: 0.35;
+    cursor: default;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tutorial-slide.active {
+        animation: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .tutorial-card {
+        padding: 30px 20px 22px;
+    }
+
+    .tutorial-slide h2 {
+        font-size: 22px;
+    }
+
+#tutorial-help-btn {
+    right: 14px;
+    bottom: 14px;
+}
+}
