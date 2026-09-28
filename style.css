@@ -321,3 +321,6 @@ footer p {
     }
 }
 
+* {
+  cursor: none !important;
+}

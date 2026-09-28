@@ -30,22 +30,23 @@
     
     let currentIndex = 0;
 
+slides.forEach(function (_, i) {
 
-    slides.forEach(function (_, i) {
-    
-        const dot = document.createElement("span");
-    
-        dot.className = "tutorial-dot";
-    
-        dot.addEventListener("click", function () {
-    
-            showSlide(i);
-    
-        });
-    
-        dotsContainer.appendChild(dot);
+    const dot = document.createElement("button");
+
+    dot.type = "button";
+
+    dot.className = "tutorial-dot";
+
+    dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+
+    dot.addEventListener("click", function () {
+        showSlide(i);
     });
-    
+    dotsContainer.appendChild(dot);
+});
+
+
     const dots = Array.prototype.slice.call(dotsContainer.children);
 
     
@@ -96,6 +97,7 @@
     }
 
     
+    
     function closeTutorial() {
     
         overlay.classList.add("hidden");
@@ -138,8 +140,10 @@
     
     });
 
-    document.addEventListener(
+    window.addEventListener(
     "keydown",
+    
+
     
     function (event) {
         if (overlay.classList.contains("hidden")) {
@@ -155,25 +159,36 @@
 
         const key = event.key;
 
+        if (key === "Tab" || key === "Shift") {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return;
+        }
+    
     
         if (key === "ArrowRight" || key === "Enter" || key === " ") {
             event.preventDefault();
+            event.stopImmediatePropagation();
             next();
         }
-        
+    
         else if (key === "ArrowLeft") {
             event.preventDefault();
+            event.stopImmediatePropagation();
             prev();
         }
         
         else if (key === "Escape") {
+            event.stopImmediatePropagation();
             closeTutorial();
         }
 
-        event.stopPropagation();
+        event.stopImmediatePropagation();
     },
     true
 );
+
+
 
     function maybeAutoOpen() {
         let alreadySeen = false;

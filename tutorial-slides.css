@@ -142,6 +142,17 @@ overflow: hidden;
     background: rgba(255, 255, 255, 0.18);
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;
+    padding: 0; 
+    border: none; 
+    appearance: none; 
+    -webkit-appearance: none;
+}
+
+
+:focus-visible {
+    outline: 3px solid #f6d7a7;
+    outline-offset: 3px;
+    border-radius: 4px;
 }
 
 .tutorial-dot.active {

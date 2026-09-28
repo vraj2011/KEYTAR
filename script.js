@@ -57,6 +57,66 @@ const stringButtons = document.querySelectorAll(".string-key");
 
 const onScreenKeys = document.querySelectorAll(".key");
 
+window.addEventListener("keydown", function (event) {
+    if (event.key === "Tab") {
+        event.preventDefault();
+        return;
+    }
+
+    if (![
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown"
+    ].includes(event.key)) {
+        return;
+    }
+
+    const tutorialOverlay = document.getElementById("tutorial-overlay");
+    if (tutorialOverlay && !tutorialOverlay.classList.contains("hidden")) {
+        return;
+    }
+
+    const target = event.target;
+    const isTextInput = target instanceof HTMLInputElement && target.type === "text";
+    const isRangeInput = target instanceof HTMLInputElement && target.type === "range";
+
+    if (isRangeInput && (event.key === "ArrowUp" || event.key === "ArrowDown")) {
+        return;
+    }
+
+    let direction = event.key === "ArrowLeft" || event.key === "ArrowUp" ? -1 : 1;
+
+    if (isTextInput && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
+        const hasSelection = target.selectionStart !== target.selectionEnd;
+        const hasTextInDirection = event.key === "ArrowLeft"
+            ? target.selectionStart > 0
+            : target.selectionEnd < target.value.length;
+
+        if (hasSelection || hasTextInDirection) {
+            return;
+        }
+    }
+
+    const controls = Array.from(document.querySelectorAll(
+        'button, input:not([type="hidden"]), select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
+    )).filter(function (control) {
+        return !control.disabled && control.getClientRects().length > 0;
+    });
+
+    if (controls.length === 0) {
+        return;
+    }
+
+    const currentIndex = controls.indexOf(document.activeElement);
+    const nextIndex = currentIndex === -1
+        ? (direction > 0 ? 0 : controls.length - 1)
+        : (currentIndex + direction + controls.length) % controls.length;
+
+    event.preventDefault();
+    controls[nextIndex].focus();
+}, true);
+
 
 function selectString(number) {
 
