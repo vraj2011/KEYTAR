@@ -1,4 +1,46 @@
 let selectedString = 6;
+(function keyboardOnly() {
+    let lastPointerType = "";
+
+    function fromMouse(event) {
+        if (event.pointerType) {
+            return event.pointerType === "mouse";
+        }
+
+        if (event.type === "click" && event.detail === 0) {
+            return false;
+        }
+
+        return lastPointerType === "mouse";
+    }
+
+    function block(event) {
+        if (fromMouse(event)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+        }
+    }
+
+    window.addEventListener("pointermove", function (event) {
+        lastPointerType = event.pointerType;
+    }, true);
+
+    window.addEventListener("pointerdown", function (event) {
+        lastPointerType = event.pointerType;
+        block(event);
+    }, true);
+
+    ["pointerup", "mousedown", "mouseup", "click", "dblclick",
+     "auxclick", "contextmenu", "dragstart"].forEach(function (type) {
+        window.addEventListener(type, block, true);
+    });
+
+
+    window.addEventListener("wheel", function (event) {
+        event.preventDefault();
+    }, { passive: false, capture: true });
+})();
+
 
 const noteNames = [
     "C", "C#", "D", "D#", "E", "F",
