@@ -326,9 +326,10 @@ footer p {
 }
 
 @media (any-pointer: fine) {
-    * {
-        cursor: none !important;
-    }
+    * { cursor: none !important; }
+
+    html, body { scrollbar-width: none; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 
     body::after {
         content: "";
